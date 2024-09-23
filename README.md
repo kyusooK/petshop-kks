@@ -6,7 +6,7 @@ www.msaez.io/#/courses/cna-full/ce76b2f0-7943-11ef-a079-7fda25656cd0/dpg-dev
 ## Before Running Services
 ### Make sure there is a Kafka server running
 ```
-cd kafka
+cd infra
 docker-compose up
 ```
 - Check the Kafka messages:
@@ -14,7 +14,7 @@ docker-compose up
 cd infra
 docker-compose exec -it kafka /bin/bash
 cd /bin
-./kafka-console-consumer --bootstrap-server localhost:9092 --topic
+./kafka-console-consumer --bootstrap-server localhost:9092 --topic petshop  --from-beginning
 ```
 
 ## Run the backend micro-services
@@ -34,6 +34,11 @@ mvn spring-boot:run
 - petmanagement
 ```
  http :8088/pets id="id" name="name" energy="energy" appearance="appearance" address="address" petType="petType" photo="photo" petStatus="petStatus" illnessHistories="illnessHistories" 
+```
+```
+http :8082/pets name=야옹이 weight=5 energy=1
+http :8082/pets/1/feed gram=10
+http :8082/pets/1
 ```
 - store
 ```
@@ -80,3 +85,9 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 sudo mv /tmp/eksctl /usr/local/bin
 ```
 
+## Test
+```
+http :8082/pets name=야옹이 weight=5 energy=1
+http :8082/pets/1/feed gram=10
+http :8082/pets/2
+```

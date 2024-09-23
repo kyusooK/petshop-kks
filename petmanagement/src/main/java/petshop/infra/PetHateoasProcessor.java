@@ -14,17 +14,17 @@ public class PetHateoasProcessor
     public EntityModel<Pet> process(EntityModel<Pet> model) {
         model.add(
             Link
-                .of(model.getRequiredLink("self").getHref() + "//feed")
+                .of(model.getRequiredLink("self").getHref() + "/feed")
                 .withRel("/feed")
         );
         model.add(
             Link
-                .of(model.getRequiredLink("self").getHref() + "//sleep")
+                .of(model.getRequiredLink("self").getHref() + "/sleep")
                 .withRel("/sleep")
         );
         model.add(
             Link
-                .of(model.getRequiredLink("self").getHref() + "//groom")
+                .of(model.getRequiredLink("self").getHref() + "/groom")
                 .withRel("/groom")
         );
 

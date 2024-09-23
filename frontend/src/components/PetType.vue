@@ -8,7 +8,7 @@
                 <v-select
                         v-model="newValue"
                         :label="'name'"
-                        :items="PetTypeList"
+                        :items="petTypeList"
                 ></v-select>
             </div>
             <div v-else style="margin-top:-20px;">
@@ -31,7 +31,7 @@
             label: String,
         },
         data: () => ({
-            petTypeList : [ "CAT",  "DOG", ],
+            petTypeList : ["CAT",  "DOG"],
             newValue: '',
         }),
         async created() {

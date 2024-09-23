@@ -1,5 +1,5 @@
 <template>
-    <v-card style="width:450px; height:100%;" outlined>
+    <v-card style="width:450px; height:100%;" outlined >
         <template slot="progress">
             <v-progress-linear
                     color="primary-darker-1"
@@ -15,19 +15,18 @@
             Pet
         </v-card-title >        
 
-        <v-card-text>
+        <v-card-text style="background-color: white;">
             <String label="Name" v-model="value.name" :editMode="editMode" :inputUI="''"/>
             <Number label="Energy" v-model="value.energy" :editMode="editMode" :inputUI="''"/>
-            <Number label="Appearance" v-model="value.appearance" :editMode="editMode" :inputUI="''"/>
-            <Address offline label="Address" v-model="value.address" :editMode="editMode" @change="change"/>
+            <Number label="Weight" v-model="value.appearance" :editMode="editMode" :inputUI="''"/>
+            <!-- <Address offline label="Address" v-model="value.address" :editMode="editMode" @change="change"/> -->
             <PetType offline label="PetType" v-model="value.petType" :editMode="editMode" @change="change"/>
             <Photo offline label="Photo" v-model="value.photo" :editMode="editMode" @change="change"/>
             <PetStatus offline label="PetStatus" v-model="value.petStatus" :editMode="editMode" @change="change"/>
-            <List&lt;IllnessHistory&gt; offline label="IllnessHistories" v-model="value.illnessHistories" :editMode="editMode" @change="change"/>
             <IllnessHistoryManager offline label="IllnessHistories" v-model="value.illnessHistories" :editMode="editMode" @change="change"/>
         </v-card-text>
 
-        <v-card-actions>
+        <v-card-actions style="background-color: white;">
             <v-spacer></v-spacer>
             <v-btn
                 color="primary"
@@ -127,13 +126,13 @@
 <script>
     const axios = require('axios').default;
 
-    import Address from './vo/Address.vue';
-    import Photo from './vo/Photo.vue';
+    // import Address from './vo/Address.vue';
+import Photo from './vo/Photo.vue';
 
     export default {
         name: 'PetmanagementPet',
         components:{
-            Address,
+            // Address,
             Photo,
         },
         props: {

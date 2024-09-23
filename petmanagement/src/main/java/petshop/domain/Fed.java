@@ -14,6 +14,7 @@ public class Fed extends AbstractEvent {
     private Long id;
     private String name;
     private Integer energy;
+    private Integer weight;
     private Integer appearance;
     private PetStatus petStatus;
 

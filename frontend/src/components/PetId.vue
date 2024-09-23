@@ -36,8 +36,6 @@
                     'id': '',
                 }
             }
-            if(typeof this.value === 'object') {
-            }
         },
         watch: {
             value(val) {

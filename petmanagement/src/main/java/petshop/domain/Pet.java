@@ -1,13 +1,18 @@
 package petshop.domain;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PostPersist;
+import javax.persistence.Table;
+
 import lombok.Data;
 import petshop.PetmanagementApplication;
-import petshop.domain.Overweighted;
-import petshop.domain.PetRegistered;
 
 @Entity
 @Table(name = "Pet_table")
@@ -22,6 +27,8 @@ public class Pet {
     private String name;
 
     private Integer energy;
+
+    private Integer weight;
 
     private Integer appearance;
 
@@ -44,9 +51,6 @@ public class Pet {
     public void onPostPersist() {
         PetRegistered petRegistered = new PetRegistered(this);
         petRegistered.publishAfterCommit();
-
-        Overweighted overweighted = new Overweighted(this);
-        overweighted.publishAfterCommit();
     }
 
     public static PetRepository repository() {
@@ -65,16 +69,27 @@ public class Pet {
 
     //<<< Clean Arch / Port Method
     public void feed(FeedCommand feedCommand) {
-        //implement business logic here:
+
+        energy = energy + 1;
+        weight = weight + 1;
+
 
         Fed fed = new Fed(this);
         fed.publishAfterCommit();
+
+        if(weight > 100){
+            Overweighted overweighted = new Overweighted();
+            overweighted.publishAfterCommit();
+        }
     }
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public void sleep(SleepCommand sleepCommand) {
         //implement business logic here:
+
+        energy = energy + 1;
+        appearance = appearance + 1;
 
         Slept slept = new Slept(this);
         slept.publishAfterCommit();
@@ -84,6 +99,8 @@ public class Pet {
     //<<< Clean Arch / Port Method
     public void groom(GroomCommand groomCommand) {
         //implement business logic here:
+
+        appearance = appearance + 1;
 
         Groomed groomed = new Groomed(this);
         groomed.publishAfterCommit();
