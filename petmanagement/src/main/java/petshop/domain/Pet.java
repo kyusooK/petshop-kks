@@ -33,9 +33,6 @@ public class Pet {
     private Integer appearance;
 
     @Embedded
-    private Address address;
-
-    @Embedded
     private PetType petType;
 
     @Embedded
@@ -43,9 +40,6 @@ public class Pet {
 
     @Embedded
     private PetStatus petStatus;
-
-    @ElementCollection
-    private List<IllnessHistory> illnessHistories;
 
     @PostPersist
     public void onPostPersist() {
@@ -69,18 +63,7 @@ public class Pet {
 
     //<<< Clean Arch / Port Method
     public void feed(FeedCommand feedCommand) {
-
-        energy = energy + 1;
-        weight = weight + 1;
-
-
-        Fed fed = new Fed(this);
-        fed.publishAfterCommit();
-
-        if(weight > 100){
-            Overweighted overweighted = new Overweighted();
-            overweighted.publishAfterCommit();
-        }
+      
     }
 
     //>>> Clean Arch / Port Method
